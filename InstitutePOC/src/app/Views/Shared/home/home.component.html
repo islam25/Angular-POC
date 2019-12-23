@@ -1,0 +1,26 @@
+<br>
+<h4 *ngIf='!auth.IsUser'>Please select your category</h4>
+<hr>
+
+<div class="row selectedType" *ngIf='!auth.IsUser'>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" (change)="OnTypeChange($event)" name="inlineRadioOptions"
+            value="IsStudent" checked>
+        <label class="form-check-label" for="inlineRadio2">Student</label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" (change)="OnTypeChange($event)" name="inlineRadioOptions"
+            value="IsStaff">
+        <label class="form-check-label" for="inlineRadio1">Staff</label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" (change)="OnTypeChange($event)" name="inlineRadioOptions"
+            value="IsDepartment">
+        <label class="form-check-label" for="inlineRadio2">Department</label>
+    </div>
+</div>
+
+<br />
+<app-student-list *ngIf="IsStudent" [studs]=Students></app-student-list>
+<app-staff-list *ngIf="IsStaff" [stafs]=Staffs></app-staff-list>
+<app-department-list *ngIf="IsDepartment" [depts]=Departments></app-department-list>

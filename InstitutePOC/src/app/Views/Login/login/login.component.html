@@ -1,0 +1,29 @@
+<br>
+<br>
+<h2>Login</h2>
+<hr>
+<br>
+<br>
+
+<form [formGroup]='LoginInfo' (ngSubmit)="OnSubmit()">
+    <table class="w-50">
+        <tr>
+            <td><h5>User Name</h5></td>
+            <td><input type="text" class="form-control" formControlName='userName'></td>
+        </tr>
+        <br>
+        <tr>
+            <td><h5>Password</h5></td>
+            <td><input type="password" class="form-control" formControlName='password'></td>
+        </tr>
+        <br>
+        <tr>
+            <td>
+            </td>
+            <td>
+                <button type="submit" class="btn btn-info" style="width: 100%;" [disabled]="!LoginInfo.valid">Login</button>
+            </td>
+        </tr>
+        
+    </table>
+</form>

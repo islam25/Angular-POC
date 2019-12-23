@@ -1,0 +1,32 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" [routerLink] = "['/']">Institute POC</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" *ngIf='auth.IsLogin' [routerLink] = "['/home']">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" *ngIf='auth.IsLogin && !auth.IsUser' href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Add
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" [routerLink] = "['/addStudent']">New Student</a>
+            <a class="dropdown-item" [routerLink] = "['/addStaff']">New Employee</a>
+            <div class="dropdown-divider" *ngIf='auth.IsAdmin'></div>
+            <a class="dropdown-item" *ngIf='auth.IsAdmin' [routerLink] = "['/addDepartment']">New Department</a>
+          </div>
+        </li>
+      </ul>
+        <a class="nav-link" *ngIf='auth.IsLogin && auth.IsStaff'>Welcome Staff</a>
+        <a class="nav-link" *ngIf='auth.IsLogin && auth.IsUser'>Welcome Student</a>
+        <a class="nav-link" *ngIf='auth.IsLogin && auth.IsAdmin'>Welcome Admin</a>
+
+        <a class="nav-link" *ngIf='!auth.IsLogin' [routerLink] = "['/login']">LogIn</a>
+        <a class="nav-link" *ngIf='auth.IsLogin' [routerLink] = "['/login']" (click)='Logout()'>LogOut</a>
+    </div>
+  </nav>
+  

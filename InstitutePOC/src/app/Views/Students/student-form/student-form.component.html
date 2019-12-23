@@ -1,0 +1,31 @@
+<br>
+<br>
+<h2 *ngIf="!IsStudentEdit">Add New Student</h2>
+<h2 *ngIf="IsStudentEdit">Edit Student</h2>
+<hr>
+<br>
+<br>
+
+<form [formGroup]='StudentInfo' (ngSubmit)="OnSubmit()">
+    <table class="w-50">
+        <tr>
+            <td><h5>Student Name</h5></td>
+            <td><input type="text" class="form-control" formControlName='studentName'></td>
+        </tr>
+        <br>
+        <tr>
+            <td><h5>Department Name</h5></td>
+            <td><input type="text" class="form-control" formControlName='departmentName'></td>
+        </tr>
+        <br>
+        <tr>
+            <td>
+            </td>
+            <td>
+                <button (click)="Cancel()" class="btn btn-info" style="margin-right: 1px;width: 49%;">Cancel</button>
+                <button type="submit" *ngIf="!IsStudentEdit" class="btn btn-primary" style="width: 50%;">Save</button>
+                <button type="submit" *ngIf="IsStudentEdit" class="btn btn-primary" style="width: 50%;">Edit</button>
+            </td>
+        </tr>
+    </table>
+</form>

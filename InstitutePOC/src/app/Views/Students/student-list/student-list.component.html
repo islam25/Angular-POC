@@ -1,0 +1,76 @@
+<table class="table table-bordered">
+    <thead class="thead-dark">
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Department Name</th>
+            <th>Manage</th>
+        </tr>
+        <tr *ngFor="let student of studs;">
+            <td>{{ student.Id }}</td>
+            <td>{{ student.Name }}</td>
+            <td>{{ student.DepartmentName }}</td>
+            <td class="w-25">
+                <a class="btn btn-info" [routerLink]="['/addStudent']" [queryParams]="{Id:student.Id}">Edit</a>
+                <a type="button" class="btn" (click)="OnShow(student)" data-toggle="modal" data-target="#myModal">Detail</a>
+                <a type="button" class="btn btn-danger" *ngIf='!auth.IsUser' (click)="SetToRemove(student.Id)" data-toggle="modal" data-target="#myDeleteModal">Delete</a>
+              </td>
+        </tr>
+    </thead>
+</table>
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Student Information</h4>
+        </div>
+        <div class="modal-body">
+          <table class="table borderless">
+              <tr>
+                  <td class="w-50">Id</td>
+                  <td>{{student.Id}}</td>
+              </tr>
+              <tr>
+                <td class="w-50">Name</td>
+                <td>{{student.Name}}</td>
+            </tr>
+            <tr>
+                <td class="w-50">Department Name</td>
+                <td>{{student.DepartmentName}}</td>
+            </tr>
+          </table>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
+    <!-- Modal Delete -->
+    <div class="modal fade" id="myDeleteModal" role="dialog">
+      <div class="modal-dialog">
+      
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Delete Student</h4>
+          </div>
+          <div class="modal-body">
+            <h5>Are you sure to remove Student?</h5>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-success" data-dismiss="modal" (click)="OnRemove()">Yes</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+          </div>
+        </div>
+        
+      </div>
+    </div>
